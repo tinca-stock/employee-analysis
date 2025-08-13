@@ -1,0 +1,82 @@
+df["Godineiskustva"]=2025-df["GodinaZaposlenja"]
+today_date = date.today()
+df["Starostzapisa"]=(today_date-df["DatumZaposlenja"]).dt.days
+
+department_salary_stats = df.groupby("Odjel")["Plata"].agg(
+    Average='mean',
+    Median='median',
+    Min='min',
+    Max='max'
+)
+std_dev_by_department = df.groupby('Odjel')['Plata'].std()
+
+broj_zaposlenih=df.groupby("Odjel")["Spol"].size().reset_index()
+
+df_mean_salary = df.groupby('GodinaZaposlenja')['Plata'].mean().reset_index()
+plt.figure(figsize=(10, 6))  # Adjust figure size as needed
+plt.plot(df['Year'], df['Salary'], marker='o', linestyle='-', color='skyblue')
+
+# Add labels and title
+plt.title('Mean Salary Over Years')
+plt.xlabel('Year')
+plt.ylabel('Mean Salary')
+
+# Add a grid for better readability
+plt.grid(True)
+
+# Display the plot
+plt.show()
+
+df_odjel_count= df["Odjel"].value_counts().sort_values(ascending=False)
+
+plt.figure(figsize=(10, 6))
+df_odjel_count.plot(kind="bar", color="lightgreen")
+plt.title("Broj zaposlenih po odjelima")
+plt.xlabel("Odjel")
+plt.ylabel("Broj zaposlenih")
+plt.xticks(rotation=45)
+plt.grid(axis='y', alpha=0.7)
+plt.show()
+
+df["Godina"]= df["DatumZaposlenja"].map(lambda x: x.year)
+df["Mjesec"] = df["DatumZaposlenja"].map(lambda x: x.month)
+
+df.groupby(["Mjesec","Status"]).count().Employee_No
+
+df_tidy = df.groupby(["Mjesec","Status"]).count().reset_index()
+
+sns.scatterplot(x = 'month', y = 'Employee_No', hue='Status', data = df.tidy)
+
+
+
+plt.figure(figsize=(12,6))
+sns.boxplot(x="Odjel", y="Plata", data=df)
+plt.title("Distribucija plata po odjelima")
+plt.xticks(rotation=45)
+plt.grid(axis="y")
+plt.show()
+
+data = df.loc[:,["GodinaZaposlenja", "Plata"]]
+cor_result = data.corr(method='pearson')
+cor_result
+
+outliers_by_department = {}
+
+for department in df["Odjel"].unique():
+    department_salaries = df[df["Odjel"] == department]["Plata"]
+
+    Q1 = department_salaries.quantile(0.25)
+    Q3 = department_salaries.quantile(0.75)
+    IQR = Q3 - Q1
+
+    lower_bound = Q1 - 1.5 * IQR
+    upper_bound = Q3 + 1.5 * IQR
+
+    department_outliers = department_salaries[(department_salaries < lower_bound) | (department_salaries > upper_bound)]
+    outliers_by_department[department] = department_outliers.tolist()
+
+    for department, outliers in outliers_by_department.items():
+        if outliers:
+            print(f"Odjel: {department}, Outlier Salaries: {outliers}")
+        else:
+            print(f"Odjel: {department}, No outliers detected.")
