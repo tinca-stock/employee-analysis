@@ -1,38 +1,38 @@
 # Employee Data Analysis Project
 
 ## 📌 Overview
-Ovaj projekt analizira dataset o zaposlenicima koristeći **SQL**, **Python (Pandas, Matplotlib)** i **Tableau**.  
-Cilj je prikazati statistike zaposlenika, njihove plaće, odjele, godine iskustva i obrazovanje, te napraviti interaktivni dashboard u Tableau-u.
+This project analyzes a dataset of employees using **SQL**, **Python (Pandas, Matplotlib)** and **Tableau**. 
+The goal is to display employee statistics, their salaries, departments, years of experience and education, and create an interactive dashboard in Tableau.
 
 ---
 
 ## 🗂 Dataset
-- Ime fajla: `employees.csv`
-- Sadrži:
-  - `employee_id` – jedinstveni ID zaposlenika
-  - `name` – ime i prezime zaposlenika
-  - `gender` – spol
-  - `department` – odjel
-  - `job_title` – pozicija
-  - `education` – stupanj obrazovanja
-  - `salary` – godišnja plata
-  - `hire_date` – datum zaposlenja
-  - `manager_id` – ID nadređenog
-  - `location` – lokacija rada
+- File name: `employees.csv`
+- Contains:
+  - `employee_id` – unique employee ID
+  - `name' – name and surname of the employee
+  - `gender' - sex
+  - `department' - department
+  - `job_title` – position
+  - ``education'' – level of education
+  - `salary' – annual salary
+  - `hire_date' – date of employment
+  - `manager_id` – ID of the superior
+  - `location' – location of work
 
 ---
 
-## 🛠 Korištene tehnologije
-- **SQL Server** – kreiranje i analiza baze
-- **Python (Pandas, Matplotlib)** – obrada i vizualizacija podataka
-- **Tableau** – izrada interaktivnog dashboarda
-- **Excel/CSV** – spremanje i priprema podataka
+## 🛠 Technologies used
+- **SQL Server** – database creation and analysis
+- **Python (Pandas, Matplotlib)** – data processing and visualization
+- **Tableau** – creating an interactive dashboard
+- **Excel/CSV** – saving and preparing data
 
 ---
 
-## 📊 Analize i vizualizacije
-1. Prosječna plata po odjelima
-2. Broj zaposlenika po godinama iskustva
-3. Distribucija plata po obrazovanju
-4. Analiza broja zaposlenih po lokacijama
-5. Hijerarhija menadžera i zaposlenika
+## 📊 Analyzes and visualizations
+1. Average salary by department
+2. Number of employees by years of experience
+3. Distribution of wages by education
+4. Analysis of the number of employees per locations
+5. Hierarchy of managers and employees
